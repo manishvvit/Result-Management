@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marksheet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="marksheet-container">
+        <h1>Student Marksheet</h1>
+        <div class="student-info">
+            <p><strong>Name:</strong> {{ student.name }}</p>
+            <p><strong>Roll Number:</strong> {{ student.roll_number }}</p>
+            <p><strong>Date of Birth:</strong> {{ student.dob }}</p>
+        </div>
+
+        <table class="marks-table">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Marks Obtained</th>
+                    <th>Max Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subject, marks in student.marks.items() %}
+                <tr>
+                    <td>{{ subject }}</td>
+                    <td>{{ marks.obtained }}</td>
+                    <td>{{ marks.max }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="summary">
+            <p><strong>Total Marks:</strong> {{ student.total_obtained }} / {{ student.total_max }}</p>
+            <p><strong>Result:</strong> {{ student.result }}</p>
+        </div>
+
+        <a href="/" class="back-btn">Back to Login</a>
+    </div>
+</body>
+</html>
